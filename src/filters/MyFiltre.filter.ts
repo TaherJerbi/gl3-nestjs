@@ -17,6 +17,7 @@ export class MyFiltre implements ExceptionFilter {
       statusCode: exception.getStatus(),
       timestamp: new Date().toISOString(),
       path: request.url,
+      exceptionResponse,
     });
     return response;
   }

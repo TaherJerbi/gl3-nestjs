@@ -6,10 +6,13 @@ import {
   Param,
   Delete,
   Patch,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { Todo } from './Model/todo.model';
-import { UpdateTodoDTO } from './todo.dto';
+import { CreateTodoDTO, UpdateTodoDTO } from './todo.dto';
 import { TodoService } from './todo-service/todo.service';
+@UsePipes(ValidationPipe)
 @Controller('todo')
 export class TodoController {
   constructor(private todoService: TodoService) {}
@@ -22,7 +25,7 @@ export class TodoController {
     return this.todoService.getTodos();
   }
   @Post()
-  addTodo(@Body() newTodo: Todo): Todo {
+  addTodo(@Body() newTodo: CreateTodoDTO): Todo {
     return this.todoService.addTodo(newTodo);
   }
   @Get('/:id')
