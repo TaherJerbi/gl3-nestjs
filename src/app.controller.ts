@@ -1,16 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { FusionUpperPipe } from './pipes/FusionUpperPipe.pipe';
 
-@Controller('test')
+@Controller('skills')
 export class AppController {
-  @Get()
-  getHello(): any {
-    return {
-      message: 'Hello',
-      to: 'GL3',
-    };
-  }
-  @Get('test')
-  testGet(): string {
-    return 'TEST OK';
+  @Post()
+  skills(@Body(FusionUpperPipe) body) {
+    return body;
   }
 }
